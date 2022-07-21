@@ -17,10 +17,29 @@ public class ApplicationDbContext : BaseDbContext
 
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Brand> Brands => Set<Brand>();
+    public DbSet<Supplier> Suppliers => Set<Supplier>();
+    public DbSet<Order> Orders => Set<Order>();
+
+    public DbSet<OrderProduct> OrderProducts => Set<OrderProduct>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        // Many to Many Relationship
+
+        modelBuilder.Entity<OrderProduct>()
+            .HasKey(p => new { p.OrderId, p.ProductId });
+
+        modelBuilder.Entity<OrderProduct>()
+            .HasOne(p => p.Order)
+            .WithMany(pc => pc.OrderProducts)
+            .HasForeignKey(p => p.OrderId);
+
+        modelBuilder.Entity<OrderProduct>()
+            .HasOne(p => p.Product)
+            .WithMany(pc => pc.OrderProducts)
+            .HasForeignKey(p => p.ProductId);
 
         modelBuilder.HasDefaultSchema(SchemaNames.Catalog);
     }

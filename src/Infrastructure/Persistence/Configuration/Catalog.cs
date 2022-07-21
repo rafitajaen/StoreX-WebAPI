@@ -32,3 +32,39 @@ public class ProductConfig : IEntityTypeConfiguration<Product>
                 .HasMaxLength(2048);
     }
 }
+
+public class SupplierConfig : IEntityTypeConfiguration<Supplier>
+{
+    public void Configure(EntityTypeBuilder<Supplier> builder)
+    {
+        builder.IsMultiTenant();
+
+        builder
+            .Property(b => b.Name)
+                .HasMaxLength(1024);
+
+        builder
+            .Property(p => p.ImagePath)
+                .HasMaxLength(2048);
+    }
+}
+
+public class OrderConfig : IEntityTypeConfiguration<Order>
+{
+    public void Configure(EntityTypeBuilder<Order> builder)
+    {
+        builder.IsMultiTenant();
+
+        builder
+            .Property(b => b.Name)
+                .HasMaxLength(1024);
+    }
+}
+
+public class OrderProductConfig : IEntityTypeConfiguration<OrderProduct>
+{
+    public void Configure(EntityTypeBuilder<OrderProduct> builder)
+    {
+        builder.IsMultiTenant();
+    }
+}
