@@ -5,7 +5,7 @@ namespace FSH.WebApi.Host.Controllers.Catalog;
 public class OrdersController : VersionedApiController
 {
     [HttpPost("search")]
-    [MustHavePermission(FSHAction.Search, FSHResource.Brands)]
+    [MustHavePermission(FSHAction.Search, FSHResource.Orders)]
     [OpenApiOperation("Search orders using available filters.", "")]
     public Task<PaginationResponse<OrderDto>> SearchAsync(SearchOrdersRequest request)
     {
@@ -13,7 +13,7 @@ public class OrdersController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.Brands)]
+    [MustHavePermission(FSHAction.View, FSHResource.Orders)]
     [OpenApiOperation("Get order details.", "")]
     public Task<OrderDto> GetAsync(Guid id)
     {
@@ -21,7 +21,7 @@ public class OrdersController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.Brands)]
+    [MustHavePermission(FSHAction.Create, FSHResource.Orders)]
     [OpenApiOperation("Create a new order.", "")]
     public Task<Guid> CreateAsync(CreateOrderRequest request)
     {
@@ -29,7 +29,7 @@ public class OrdersController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHAction.Update, FSHResource.Brands)]
+    [MustHavePermission(FSHAction.Update, FSHResource.Orders)]
     [OpenApiOperation("Update a order.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateOrderRequest request, Guid id)
     {
@@ -39,7 +39,7 @@ public class OrdersController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHAction.Delete, FSHResource.Brands)]
+    [MustHavePermission(FSHAction.Delete, FSHResource.Orders)]
     [OpenApiOperation("Delete a order.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

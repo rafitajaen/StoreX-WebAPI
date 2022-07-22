@@ -5,7 +5,7 @@ namespace FSH.WebApi.Host.Controllers.Catalog;
 public class OrderProductsController : VersionedApiController
 {
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.Brands)]
+    [MustHavePermission(FSHAction.View, FSHResource.OrderProducts)]
     [OpenApiOperation("Get orderProduct details.", "")]
     public Task<OrderProductDto> GetAsync(Guid id)
     {
@@ -13,7 +13,7 @@ public class OrderProductsController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.Brands)]
+    [MustHavePermission(FSHAction.Create, FSHResource.OrderProducts)]
     [OpenApiOperation("Create a new orderProduct.", "")]
     public Task<Guid> CreateAsync(CreateOrderProductRequest request)
     {
@@ -21,7 +21,7 @@ public class OrderProductsController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHAction.Update, FSHResource.Brands)]
+    [MustHavePermission(FSHAction.Update, FSHResource.OrderProducts)]
     [OpenApiOperation("Update a orderProduct.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateOrderProductRequest request, Guid id)
     {
@@ -31,7 +31,7 @@ public class OrderProductsController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHAction.Delete, FSHResource.Brands)]
+    [MustHavePermission(FSHAction.Delete, FSHResource.OrderProducts)]
     [OpenApiOperation("Delete a orderProduct.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

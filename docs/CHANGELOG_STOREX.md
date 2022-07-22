@@ -1,6 +1,14 @@
 # StoreX WebAPI Changelog
 
-## v0.0.1 - [Add Warehouse side entities, requests and controllers]()
+## v0.0.2 - [Add Permissions for Warehouse Entities and Update Controllers]()
+
+**branch :** _storex_
+
+    Edit:
+        - src/Core/Shared/Authorization/FSHPermissions.cs : Add Permissions for (Suppliers, Orders and OrderProducts)
+        - src/Host/Controllers/Catalog/ : Fix Permission attributes in each controller.
+
+## v0.0.1 - [Add Warehouse side entities, requests and controllers](https://github.com/rafitajaen/StoreX-WebAPI/tree/53cbabeb04a22403656c18ef7b04e94b7d0dfd01)
 
 **branch :** _storex_
 
