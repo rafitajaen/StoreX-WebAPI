@@ -36,6 +36,7 @@ public class BrandSeeder : ICustomSeeder
             {
                 foreach (var brand in brands)
                 {
+                    _logger.LogWarning($"brandId: {brand.Id} - brandName: {brand.Name}");
                     await _db.Brands.AddAsync(brand, cancellationToken);
                 }
             }

@@ -4,6 +4,9 @@
 
 **branch :** _storex_
 
+    Add:
+        - src/Infraestructure/Common : Suppliers Seeder
+
     Edit:
         - src/Core/Shared/Authorization/FSHPermissions.cs : Add Permissions for (Suppliers, Orders and OrderProducts)
         - src/Host/Controllers/Catalog/ : Fix Permission attributes in each controller.

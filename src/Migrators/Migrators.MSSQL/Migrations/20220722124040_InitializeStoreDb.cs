@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Migrators.MSSQL.Migrations.Application
+namespace Migrators.MSSQL.Migrations
 {
     public partial class InitializeStoreDb : Migration
     {
