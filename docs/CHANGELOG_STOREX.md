@@ -1,6 +1,20 @@
 # StoreX WebAPI Changelog
 
-## v0.0.2 - [Add Permissions for Warehouse Entities and Update Controllers]()
+## v0.0.3 - [Independent Store Folder and All in one Seeder]()
+
+**branch :** _storex_
+
+    Add:
+        - Move Models, Requests, Controllers and Configuration to Store Folder to be independent of original project and avoid merge conflicts
+        - src/Infrastructure/Persistence/Store : Seeders for Products and OrderProducts
+        - src/Core/Store/OrderProduct : Get OrderProduct By Order Id
+        - src/Core/Store/OrderProduct : OrderProductDetailsDto
+        - src/Infrstructure/Store : All in one Seeder
+
+    Edit:
+        - src/Host/Controllers/Store : OrderProduct Controller
+
+## v0.0.2 - [Add Permissions for Warehouse Entities and Update Controllers](https://github.com/rafitajaen/StoreX-WebAPI/tree/da5618d83cec6719a1a638575435a04393cb7575)
 
 **branch :** _storex_
 

@@ -34,7 +34,7 @@ public class GetProductViaDapperRequestHandler : IRequestHandler<GetProductViaDa
             Description = product.Description,
             ImagePath = product.ImagePath,
             Name = product.Name,
-            BasePrice = product.BasePrice
+            Rate = product.Rate
         };
     }
 }

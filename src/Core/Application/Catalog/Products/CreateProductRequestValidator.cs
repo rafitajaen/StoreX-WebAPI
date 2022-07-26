@@ -10,8 +10,8 @@ public class CreateProductRequestValidator : CustomValidator<CreateProductReques
             .MustAsync(async (name, ct) => await productRepo.GetBySpecAsync(new ProductByNameSpec(name), ct) is null)
                 .WithMessage((_, name) => T["Product {0} already Exists.", name]);
 
-        RuleFor(p => p.BasePrice)
-            .GreaterThanOrEqualTo(0);
+        RuleFor(p => p.Rate)
+            .GreaterThanOrEqualTo(1);
 
         RuleFor(p => p.Image)
             .InjectValidator();

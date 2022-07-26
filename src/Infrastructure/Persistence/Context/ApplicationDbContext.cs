@@ -6,6 +6,9 @@ using FSH.WebApi.Infrastructure.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
+// StoreX Using
+using FSH.WebApi.Domain.Store;
+
 namespace FSH.WebApi.Infrastructure.Persistence.Context;
 
 public class ApplicationDbContext : BaseDbContext
@@ -17,16 +20,18 @@ public class ApplicationDbContext : BaseDbContext
 
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Brand> Brands => Set<Brand>();
+
+    // StoreX DbSets
     public DbSet<Supplier> Suppliers => Set<Supplier>();
     public DbSet<Order> Orders => Set<Order>();
-
+    public DbSet<StoreProduct> StoreProducts => Set<StoreProduct>();
     public DbSet<OrderProduct> OrderProducts => Set<OrderProduct>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Many to Many Relationship
+        // StoreX - Many to Many Relationship
 
         modelBuilder.Entity<OrderProduct>()
             .HasKey(p => new { p.OrderId, p.ProductId });

@@ -7,4 +7,7 @@ internal static class SchemaNames
     public static string Catalog = nameof(Catalog); // "CATALOG";
     public static string Identity = nameof(Identity); // "IDENTITY";
     public static string MultiTenancy = nameof(MultiTenancy); // "MULTITENANCY";
+
+    // StoreX SchemaNames
+    public static string Store = nameof(Store);
 }

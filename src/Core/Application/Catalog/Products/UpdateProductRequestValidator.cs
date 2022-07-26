@@ -12,7 +12,7 @@ public class UpdateProductRequestValidator : CustomValidator<UpdateProductReques
                         is not Product existingProduct || existingProduct.Id == product.Id)
                 .WithMessage((_, name) => T["Product {0} already Exists.", name]);
 
-        RuleFor(p => p.BasePrice)
+        RuleFor(p => p.Rate)
             .GreaterThanOrEqualTo(1);
 
         RuleFor(p => p.Image)

@@ -5,11 +5,8 @@ public class ProductDto : IDto
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
     public string? Description { get; set; }
-    public decimal BasePrice { get; set; }
-    public int StockUnits { get; set; }
-    public string? UnitType { get; set; }
-    public decimal M2 { get; set; }
+    public decimal Rate { get; set; }
+    public string? ImagePath { get; set; }
     public Guid BrandId { get; set; }
     public string BrandName { get; set; } = default!;
-    public string? ImagePath { get; set; }
 }

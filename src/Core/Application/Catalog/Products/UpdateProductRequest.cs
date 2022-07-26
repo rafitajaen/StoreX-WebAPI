@@ -7,10 +7,7 @@ public class UpdateProductRequest : IRequest<Guid>
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
     public string? Description { get; set; }
-    public decimal BasePrice { get; set; }
-    public int StockUnits { get; set; }
-    public string? UnitType { get; set; }
-    public decimal M2 { get; set; }
+    public decimal Rate { get; set; }
     public Guid BrandId { get; set; }
     public bool DeleteCurrentImage { get; set; } = false;
     public FileUploadRequest? Image { get; set; }
@@ -48,7 +45,7 @@ public class UpdateProductRequestHandler : IRequestHandler<UpdateProductRequest,
             ? await _file.UploadAsync<Product>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedProduct = product.Update(request.Name, request.Description, request.BasePrice, request.StockUnits, request.UnitType, request.M2, request.BrandId, productImagePath);
+        var updatedProduct = product.Update(request.Name, request.Description, request.Rate, request.BrandId, productImagePath);
 
         // Add Domain Events to be raised after the commit
         product.DomainEvents.Add(EntityUpdatedEvent.WithEntity(product));
