@@ -1,6 +1,13 @@
 # StoreX WebAPI Changelog
 
-## v0.0.3 - [Independent Store Folder and All in one Seeder]()
+## v0.0.4 - [Make OrderProducts Searchable]()
+
+**branch :** _storex_
+
+    Edit:
+        - src/Core/Application/Store : Small bugfixes to make OrderProducts Searchable
+
+## v0.0.3 - [Independent Store Folder and All in one Seeder](https://github.com/rafitajaen/StoreX-WebAPI/tree/9bfacfcfd48b5ce259db79cabfd7312bd45e9413)
 
 **branch :** _storex_
 

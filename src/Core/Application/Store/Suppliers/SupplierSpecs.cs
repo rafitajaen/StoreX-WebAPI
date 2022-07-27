@@ -8,6 +8,7 @@ public class SupplierSpecs
     // Supplier By Name
     // Supplier By Search Request
 }
+
 public class SupplierByIdSpec : Specification<Supplier, SupplierDto>, ISingleResultSpecification
 {
     public SupplierByIdSpec(Guid id) =>

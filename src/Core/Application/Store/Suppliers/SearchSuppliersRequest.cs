@@ -4,8 +4,6 @@ public class SearchSuppliersRequest : PaginationFilter, IRequest<PaginationRespo
 {
 }
 
-
-
 public class SearchSuppliersRequestHandler : IRequestHandler<SearchSuppliersRequest, PaginationResponse<SupplierDto>>
 {
     private readonly IReadRepository<Supplier> _repository;

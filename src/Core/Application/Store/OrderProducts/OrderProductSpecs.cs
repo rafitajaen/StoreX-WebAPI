@@ -25,10 +25,10 @@ public class OrderProductByIdsSpec : Specification<OrderProduct>, ISingleResultS
 public class OrderProductsByOrderSpec : Specification<OrderProduct>
 {
     public OrderProductsByOrderSpec(Guid orderId) =>
-        Query.Where(p => p.OrderId == orderId);
+        Query.Where(p => p.OrderId == orderId).Include(op => op.Product);
 }
 
-public class OrderProductByOrderWithProductSpec : Specification<OrderProduct, OrderProductDetailsDto>, ISingleResultSpecification
+public class OrderProductByOrderWithProductSpec : Specification<OrderProduct, OrderProductDetailsDto>
 {
     public OrderProductByOrderWithProductSpec(Guid orderId) =>
         Query

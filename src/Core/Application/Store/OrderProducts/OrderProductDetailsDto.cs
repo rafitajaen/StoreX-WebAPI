@@ -4,7 +4,7 @@ namespace FSH.WebApi.Application.Store.OrderProducts;
 
 public class OrderProductDetailsDto : IDto
 {
-    public Guid Id { get; set; }
+    public Guid OrderId { get; set; }
     public StoreProductDto Product { get; set; } = default!;
     public int Quantity { get; set; }
 }

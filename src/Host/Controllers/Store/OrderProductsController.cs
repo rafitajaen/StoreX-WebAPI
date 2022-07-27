@@ -4,6 +4,14 @@ namespace FSH.WebApi.Host.Controllers.Store;
 
 public class OrderProductsController : VersionedApiController
 {
+    [HttpPost("search")]
+    [MustHavePermission(FSHAction.Search, FSHResource.OrderProducts)]
+    [OpenApiOperation("Search orderProducts using available filters.", "")]
+    public Task<PaginationResponse<OrderProductDetailsDto>> SearchAsync(SearchOrderProductsRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     [HttpGet("{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.OrderProducts)]
     [OpenApiOperation("Get orderProduct details by Order Id", "")]
