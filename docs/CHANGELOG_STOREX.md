@@ -1,6 +1,13 @@
 # StoreX WebAPI Changelog
 
-## v0.0.4 - [Make OrderProducts Searchable]()
+## v0.0.5 - [Bugfixes in OrderProducts]()
+
+**branch :** _storex_
+
+    Edit:
+        - src/Core/Application/Store : Small bugfixes OrderProducts
+
+## v0.0.4 - [Make OrderProducts Searchable](https://github.com/rafitajaen/StoreX-WebAPI/tree/c52dda8c77ef7584a8d54af56bcc61c06f2603bc)
 
 **branch :** _storex_
 

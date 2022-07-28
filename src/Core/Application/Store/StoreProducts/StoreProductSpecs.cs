@@ -7,13 +7,13 @@ public class StoreProductSpecs
     // Product By Name
 }
 
-public class StoreProductByIdSpec : Specification<StoreProduct>, ISingleResultSpecification
+public class StoreProductByIdSpec : Specification<StoreProduct, StoreProductDto>, ISingleResultSpecification
 {
     public StoreProductByIdSpec(Guid id) =>
         Query.Where(p => p.Id == id);
 }
 
-public class StoreProductByNameSpec : Specification<StoreProduct>, ISingleResultSpecification
+public class StoreProductByNameSpec : Specification<StoreProduct, StoreProductDto>, ISingleResultSpecification
 {
     public StoreProductByNameSpec(string name) =>
         Query.Where(p => p.Name == name);

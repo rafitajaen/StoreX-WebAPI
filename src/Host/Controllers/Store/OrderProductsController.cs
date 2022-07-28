@@ -28,21 +28,21 @@ public class OrderProductsController : VersionedApiController
         return Mediator.Send(request);
     }
 
-    [HttpPut("{id:guid}")]
+    [HttpPut("{orderId:guid}/{productId:guid}")]
     [MustHavePermission(FSHAction.Update, FSHResource.OrderProducts)]
     [OpenApiOperation("Update a orderProduct.", "")]
-    public async Task<ActionResult<Guid>> UpdateAsync(UpdateOrderProductRequest request, Guid id)
+    public async Task<ActionResult<Guid>> UpdateAsync(UpdateOrderProductRequest request, Guid orderId, Guid productId)
     {
-        return id != request.Id
+        return (orderId != request.OrderId && productId != request.ProductId)
             ? BadRequest()
             : Ok(await Mediator.Send(request));
     }
 
-    [HttpDelete("{id:guid}")]
+    [HttpDelete("{orderId:guid}/{productId:guid}")]
     [MustHavePermission(FSHAction.Delete, FSHResource.OrderProducts)]
     [OpenApiOperation("Delete a orderProduct.", "")]
-    public Task<Guid> DeleteAsync(Guid id)
+    public Task<Guid> DeleteAsync(Guid orderId, Guid productId)
     {
-        return Mediator.Send(new DeleteOrderProductRequest(id));
+        return Mediator.Send(new DeleteOrderProductRequest(orderId, productId));
     }
 }
