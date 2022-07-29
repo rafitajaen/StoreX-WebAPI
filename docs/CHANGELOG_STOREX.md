@@ -1,6 +1,13 @@
 # StoreX WebAPI Changelog
 
-## v0.0.5 - [Bugfixes in OrderProducts]()
+## v0.0.6 - [Bugfixes in StoreProducts]()
+
+**branch :** _storex_
+
+    Edit:
+        - src/Core/Application/Store : Small bugfixes StoreProducts
+
+## v0.0.5 - [Bugfixes in OrderProducts](https://github.com/rafitajaen/StoreX-WebAPI/tree/1566be581cc9537c3cc2520a100a1dd59a6be320)
 
 **branch :** _storex_
 

@@ -266,6 +266,9 @@ namespace Migrators.MSSQL.Migrations.Application
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
 
+                    b.Property<int>("StockAlert")
+                        .HasColumnType("int");
+
                     b.Property<int>("StockUnits")
                         .HasColumnType("int");
 

@@ -90,6 +90,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     StockUnits = table.Column<int>(type: "int", nullable: false),
+                    StockAlert = table.Column<int>(type: "int", nullable: false),
                     UnitType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     M2 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: true),

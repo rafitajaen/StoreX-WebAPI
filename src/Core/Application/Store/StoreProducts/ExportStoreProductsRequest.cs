@@ -4,8 +4,8 @@ namespace FSH.WebApi.Application.Store.StoreProducts;
 
 public class ExportStoreProductsRequest : BaseFilter, IRequest<Stream>
 {
-    public decimal? MinimumRate { get; set; }
-    public decimal? MaximumRate { get; set; }
+    public decimal? MinPrice { get; set; }
+    public decimal? MaxPrice { get; set; }
 }
 
 public class ExportStoreProductsRequestHandler : IRequestHandler<ExportStoreProductsRequest, Stream>
@@ -34,6 +34,6 @@ public class ExportStoreProductsWithBrandsSpecification : EntitiesByBaseFilterSp
     public ExportStoreProductsWithBrandsSpecification(ExportStoreProductsRequest request)
         : base(request) =>
         Query
-            .Where(p => p.BasePrice >= request.MinimumRate!.Value, request.MinimumRate.HasValue)
-            .Where(p => p.BasePrice <= request.MaximumRate!.Value, request.MaximumRate.HasValue);
+            .Where(p => p.BasePrice >= request.MinPrice!.Value, request.MinPrice.HasValue)
+            .Where(p => p.BasePrice <= request.MaxPrice!.Value, request.MaxPrice.HasValue);
 }

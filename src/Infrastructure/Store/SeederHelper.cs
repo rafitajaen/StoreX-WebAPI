@@ -11,11 +11,11 @@ public class SeederHelper
     public static Supplier Supplier4 = new Supplier("Tesla Inc.", "American multinational automotive and clean energy company headquartered in Austin, Texas", "456-789-012", "elon@tesla.com", "http://tesla.com", "https://openexpoeurope.com/wp-content/uploads/2016/12/tesla-logo-red-300x225.png");
 
     // PRODUCTS
-    public static StoreProduct Product1 = new StoreProduct("ACABADO SILICATO ESTANDAR GRANO 1 mm BOTE 15 KG", string.Empty, 29.9M, 12, "BOTE", 1M, string.Empty);
-    public static StoreProduct Product2 = new StoreProduct("AMORT. CANAL SE-TAV-500/11R", string.Empty, 24.84M, 141, "UNIDAD", 1M, string.Empty);
-    public static StoreProduct Product3 = new StoreProduct("CASONETO 70X203", string.Empty, 92.13M, 233, "UNIDAD", 2.05M, string.Empty);
-    public static StoreProduct Product4 = new StoreProduct("BROCA HILTI 8X160", string.Empty, 4.88M, 108, "UNIDAD", 1M, string.Empty);
-    public static StoreProduct Product5 = new StoreProduct("CINTA ESTANCA 70X30X3 AKIFIX", string.Empty, 0.23M, 29, "ROLLO", 1M, string.Empty);
-    public static StoreProduct Product6 = new StoreProduct("FOSEADO Z 250X150X150 2000", string.Empty, 7.36M, 216, "UNIDAD", 1M, string.Empty);
+    public static StoreProduct Product1 = new StoreProduct("ACABADO SILICATO ESTANDAR GRANO 1 mm BOTE 15 KG", string.Empty, 29.9M, 12, 0, "BOTE", 1M, string.Empty);
+    public static StoreProduct Product2 = new StoreProduct("AMORT. CANAL SE-TAV-500/11R", string.Empty, 24.84M, 141, 0, "UNIDAD", 1M, string.Empty);
+    public static StoreProduct Product3 = new StoreProduct("CASONETO 70X203", string.Empty, 92.13M, 233, 0, "UNIDAD", 2.05M, string.Empty);
+    public static StoreProduct Product4 = new StoreProduct("BROCA HILTI 8X160", string.Empty, 4.88M, 108, 0, "UNIDAD", 1M, string.Empty);
+    public static StoreProduct Product5 = new StoreProduct("CINTA ESTANCA 70X30X3 AKIFIX", string.Empty, 0.23M, 29, 0, "ROLLO", 1M, string.Empty);
+    public static StoreProduct Product6 = new StoreProduct("FOSEADO Z 250X150X150 2000", string.Empty, 7.36M, 216, 0, "UNIDAD", 1M, string.Empty);
 
 }

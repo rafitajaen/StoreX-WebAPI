@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Migrators.MSSQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220726085836_InitializeStoreDb")]
+    [Migration("20220729122754_InitializeStoreDb")]
     partial class InitializeStoreDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -267,6 +267,9 @@ namespace Migrators.MSSQL.Migrations.Application
                         .IsRequired()
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
+
+                    b.Property<int>("StockAlert")
+                        .HasColumnType("int");
 
                     b.Property<int>("StockUnits")
                         .HasColumnType("int");

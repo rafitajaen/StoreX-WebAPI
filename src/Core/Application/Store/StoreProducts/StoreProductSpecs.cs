@@ -23,5 +23,8 @@ public class StoreProductsBySearchRequestSpec : EntitiesByPaginationFilterSpec<S
 {
     public StoreProductsBySearchRequestSpec(SearchStoreProductsRequest request)
         : base(request) =>
-        Query.OrderBy(c => c.Name, !request.HasOrderBy());
+        Query
+            .OrderBy(c => c.Name, !request.HasOrderBy())
+            .Where(p => p.BasePrice >= request.MinPrice!.Value, request.MinPrice.HasValue)
+            .Where(p => p.BasePrice <= request.MaxPrice!.Value, request.MaxPrice.HasValue);
 }

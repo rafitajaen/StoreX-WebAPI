@@ -7,6 +7,7 @@ public class StoreProductDto : IDto
     public string? Description { get; set; }
     public decimal BasePrice { get; set; }
     public int StockUnits { get; set; }
+    public int StockAlert { get; set; }
     public string? UnitType { get; set; }
     public decimal M2 { get; set; }
     public string? ImagePath { get; set; }

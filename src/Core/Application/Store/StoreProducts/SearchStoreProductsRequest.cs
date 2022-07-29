@@ -2,8 +2,8 @@ namespace FSH.WebApi.Application.Store.StoreProducts;
 
 public class SearchStoreProductsRequest : PaginationFilter, IRequest<PaginationResponse<StoreProductDto>>
 {
-    public decimal? MinimumRate { get; set; }
-    public decimal? MaximumRate { get; set; }
+    public decimal? MinPrice { get; set; }
+    public decimal? MaxPrice { get; set; }
 }
 
 public class SearchStoreProductsRequestHandler : IRequestHandler<SearchStoreProductsRequest, PaginationResponse<StoreProductDto>>
