@@ -18,4 +18,8 @@ public class SeederHelper
     public static StoreProduct Product5 = new StoreProduct("CINTA ESTANCA 70X30X3 AKIFIX", string.Empty, 0.23M, 29, 0, "ROLLO", 1M, string.Empty);
     public static StoreProduct Product6 = new StoreProduct("FOSEADO Z 250X150X150 2000", string.Empty, 7.36M, 216, 0, "UNIDAD", 1M, string.Empty);
 
+    // CUSTOMERS
+    public static Customer Customer1 = new Customer("Toshiba SL.", "Descripción de Toshiba SL", "111-222-333", "admin@toshiba.com", "https://toshiba.com", "http://www.storagestudio.com.sg/image/data/TOSHIBA/TOSHIBA%20logo.jpg");
+    public static Customer Customer2 = new Customer("PILOT SA.", "Descripción de PILOT SA", "444-555-666", "hello@pilot.com", "https://pilot.com", "https://seeklogo.com/images/P/pilot-logo-06D02494FE-seeklogo.com.png");
+
 }

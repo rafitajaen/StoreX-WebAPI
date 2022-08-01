@@ -13,9 +13,6 @@ namespace Migrators.MSSQL.Migrations.Application
                 name: "Auditing");
 
             migrationBuilder.EnsureSchema(
-                name: "Catalog");
-
-            migrationBuilder.EnsureSchema(
                 name: "Store");
 
             migrationBuilder.EnsureSchema(
@@ -44,7 +41,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
             migrationBuilder.CreateTable(
                 name: "Brands",
-                schema: "Catalog",
+                schema: "Store",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -61,6 +58,31 @@ namespace Migrators.MSSQL.Migrations.Application
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Brands", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                schema: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WebsiteUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImagePath = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: true),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -168,7 +190,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
             migrationBuilder.CreateTable(
                 name: "Products",
-                schema: "Catalog",
+                schema: "Store",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -191,8 +213,38 @@ namespace Migrators.MSSQL.Migrations.Application
                     table.ForeignKey(
                         name: "FK_Products_Brands_BrandId",
                         column: x => x.BrandId,
-                        principalSchema: "Catalog",
+                        principalSchema: "Store",
                         principalTable: "Brands",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Projects",
+                schema: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsCompleted = table.Column<bool>(type: "bit", nullable: false),
+                    CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Projects", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Projects_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalSchema: "Store",
+                        principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -354,6 +406,96 @@ namespace Migrators.MSSQL.Migrations.Application
                 });
 
             migrationBuilder.CreateTable(
+                name: "Deliveries",
+                schema: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsCompleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsSyncWithStock = table.Column<bool>(type: "bit", nullable: false),
+                    ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Deliveries", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Deliveries_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalSchema: "Store",
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Invoices",
+                schema: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Invoices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Invoices_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalSchema: "Store",
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Quotations",
+                schema: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsAccepted = table.Column<bool>(type: "bit", nullable: false),
+                    ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Quotations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Quotations_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalSchema: "Store",
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderProducts",
                 schema: "Store",
                 columns: table => new
@@ -389,6 +531,138 @@ namespace Migrators.MSSQL.Migrations.Application
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "DeliveryProducts",
+                schema: "Store",
+                columns: table => new
+                {
+                    DeliveryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeliveryProducts", x => new { x.DeliveryId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_DeliveryProducts_Deliveries_DeliveryId",
+                        column: x => x.DeliveryId,
+                        principalSchema: "Store",
+                        principalTable: "Deliveries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DeliveryProducts_StoreProducts_ProductId",
+                        column: x => x.ProductId,
+                        principalSchema: "Store",
+                        principalTable: "StoreProducts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InvoiceProducts",
+                schema: "Store",
+                columns: table => new
+                {
+                    InvoiceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InvoiceProducts", x => new { x.InvoiceId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_InvoiceProducts_Invoices_InvoiceId",
+                        column: x => x.InvoiceId,
+                        principalSchema: "Store",
+                        principalTable: "Invoices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_InvoiceProducts_StoreProducts_ProductId",
+                        column: x => x.ProductId,
+                        principalSchema: "Store",
+                        principalTable: "StoreProducts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QuotationProducts",
+                schema: "Store",
+                columns: table => new
+                {
+                    QuotationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuotationProducts", x => new { x.QuotationId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_QuotationProducts_Quotations_QuotationId",
+                        column: x => x.QuotationId,
+                        principalSchema: "Store",
+                        principalTable: "Quotations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_QuotationProducts_StoreProducts_ProductId",
+                        column: x => x.ProductId,
+                        principalSchema: "Store",
+                        principalTable: "StoreProducts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Deliveries_ProjectId",
+                schema: "Store",
+                table: "Deliveries",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeliveryProducts_ProductId",
+                schema: "Store",
+                table: "DeliveryProducts",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InvoiceProducts_ProductId",
+                schema: "Store",
+                table: "InvoiceProducts",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Invoices_ProjectId",
+                schema: "Store",
+                table: "Invoices",
+                column: "ProjectId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_OrderProducts_ProductId",
                 schema: "Store",
@@ -403,9 +677,27 @@ namespace Migrators.MSSQL.Migrations.Application
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
-                schema: "Catalog",
+                schema: "Store",
                 table: "Products",
                 column: "BrandId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Projects_CustomerId",
+                schema: "Store",
+                table: "Projects",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuotationProducts_ProductId",
+                schema: "Store",
+                table: "QuotationProducts",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Quotations_ProjectId",
+                schema: "Store",
+                table: "Quotations",
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -468,12 +760,24 @@ namespace Migrators.MSSQL.Migrations.Application
                 schema: "Auditing");
 
             migrationBuilder.DropTable(
+                name: "DeliveryProducts",
+                schema: "Store");
+
+            migrationBuilder.DropTable(
+                name: "InvoiceProducts",
+                schema: "Store");
+
+            migrationBuilder.DropTable(
                 name: "OrderProducts",
                 schema: "Store");
 
             migrationBuilder.DropTable(
                 name: "Products",
-                schema: "Catalog");
+                schema: "Store");
+
+            migrationBuilder.DropTable(
+                name: "QuotationProducts",
+                schema: "Store");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims",
@@ -496,16 +800,28 @@ namespace Migrators.MSSQL.Migrations.Application
                 schema: "Identity");
 
             migrationBuilder.DropTable(
+                name: "Deliveries",
+                schema: "Store");
+
+            migrationBuilder.DropTable(
+                name: "Invoices",
+                schema: "Store");
+
+            migrationBuilder.DropTable(
                 name: "Orders",
+                schema: "Store");
+
+            migrationBuilder.DropTable(
+                name: "Brands",
+                schema: "Store");
+
+            migrationBuilder.DropTable(
+                name: "Quotations",
                 schema: "Store");
 
             migrationBuilder.DropTable(
                 name: "StoreProducts",
                 schema: "Store");
-
-            migrationBuilder.DropTable(
-                name: "Brands",
-                schema: "Catalog");
 
             migrationBuilder.DropTable(
                 name: "Roles",
@@ -517,6 +833,14 @@ namespace Migrators.MSSQL.Migrations.Application
 
             migrationBuilder.DropTable(
                 name: "Suppliers",
+                schema: "Store");
+
+            migrationBuilder.DropTable(
+                name: "Projects",
+                schema: "Store");
+
+            migrationBuilder.DropTable(
+                name: "Customers",
                 schema: "Store");
         }
     }

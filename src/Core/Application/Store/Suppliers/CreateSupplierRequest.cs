@@ -29,10 +29,10 @@ public class CreateSupplierRequestHandler : IRequestHandler<CreateSupplierReques
 
     public async Task<Guid> Handle(CreateSupplierRequest request, CancellationToken cancellationToken)
     {
-        var provider = new Supplier(request.Name, request.Description, request.Phone, request.Email, request.WebsiteUrl, request.ImagePath);
+        var supplier = new Supplier(request.Name, request.Description, request.Phone, request.Email, request.WebsiteUrl, request.ImagePath);
 
-        await _repository.AddAsync(provider, cancellationToken);
+        await _repository.AddAsync(supplier, cancellationToken);
 
-        return provider.Id;
+        return supplier.Id;
     }
 }

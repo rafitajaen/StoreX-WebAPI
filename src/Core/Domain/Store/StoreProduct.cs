@@ -11,6 +11,9 @@ public class StoreProduct : AuditableEntity, IAggregateRoot
     public decimal M2 { get; private set; }
     public string? ImagePath { get; private set; }
     public virtual ICollection<OrderProduct> OrderProducts { get; private set; } = default!;
+    public virtual ICollection<QuotationProduct> QuotationProducts { get; private set; } = default!;
+    public virtual ICollection<DeliveryProduct> DeliveryProducts { get; private set; } = default!;
+    public virtual ICollection<InvoiceProduct> InvoiceProducts { get; private set; } = default!;
 
     public StoreProduct(string name, string? description, decimal basePrice, int stockUnits, int stockAlert, string? unitType, decimal m2, string? imagePath)
     {

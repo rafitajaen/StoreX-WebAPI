@@ -1,6 +1,6 @@
 namespace FSH.WebApi.Domain.Store;
 
-public class Client : AuditableEntity, IAggregateRoot
+public class Customer : AuditableEntity, IAggregateRoot
 {
     public string Name { get; private set; }
     public string? Description { get; private set; }
@@ -9,7 +9,7 @@ public class Client : AuditableEntity, IAggregateRoot
     public string? WebsiteUrl { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public Client(string name, string? description, string? phone, string? email, string? websiteUrl, string? imagePath)
+    public Customer(string name, string? description, string? phone, string? email, string? websiteUrl, string? imagePath)
     {
         Name = name;
         Description = description;
@@ -19,7 +19,7 @@ public class Client : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Client Update(string name, string? description, string? phone, string? email, string? websiteUrl, string? imagePath)
+    public Customer Update(string name, string? description, string? phone, string? email, string? websiteUrl, string? imagePath)
     {
         if (name is not null && Name?.Equals(name) is not true) Name = name;
         if (description is not null && Description?.Equals(description) is not true) Description = description;
@@ -30,7 +30,7 @@ public class Client : AuditableEntity, IAggregateRoot
         return this;
     }
 
-    public Client ClearImagePath()
+    public Customer ClearImagePath()
     {
         ImagePath = string.Empty;
         return this;

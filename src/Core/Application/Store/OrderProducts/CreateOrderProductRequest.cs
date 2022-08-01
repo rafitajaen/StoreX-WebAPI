@@ -25,10 +25,10 @@ public class CreateOrderProductRequestHandler : IRequestHandler<CreateOrderProdu
 
     public async Task<Guid> Handle(CreateOrderProductRequest request, CancellationToken cancellationToken)
     {
-        var brand = new OrderProduct(request.OrderId, request.ProductId, request.Quantity);
+        var op = new OrderProduct(request.OrderId, request.ProductId, request.Quantity);
 
-        await _repository.AddAsync(brand, cancellationToken);
+        await _repository.AddAsync(op, cancellationToken);
 
-        return brand.Id;
+        return op.Id;
     }
 }

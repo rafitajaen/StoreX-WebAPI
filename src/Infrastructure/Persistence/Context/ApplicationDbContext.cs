@@ -26,12 +26,20 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<StoreProduct> StoreProducts => Set<StoreProduct>();
     public DbSet<OrderProduct> OrderProducts => Set<OrderProduct>();
+    public DbSet<Customer> Customers => Set<Customer>();
+    public DbSet<Project> Projects => Set<Project>();
+    public DbSet<Quotation> Quotations => Set<Quotation>();
+    public DbSet<QuotationProduct> QuotationProducts => Set<QuotationProduct>();
+    public DbSet<Delivery> Deliveries => Set<Delivery>();
+    public DbSet<DeliveryProduct> DeliveryProducts => Set<DeliveryProduct>();
+    public DbSet<Invoice> Invoices => Set<Invoice>();
+    public DbSet<InvoiceProduct> InvoiceProducts => Set<InvoiceProduct>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // StoreX - Many to Many Relationship
+        // StoreX - OrderProducts - Many to Many Relationship
 
         modelBuilder.Entity<OrderProduct>()
             .HasKey(p => new { p.OrderId, p.ProductId });
@@ -46,6 +54,58 @@ public class ApplicationDbContext : BaseDbContext
             .WithMany(pc => pc.OrderProducts)
             .HasForeignKey(p => p.ProductId);
 
-        modelBuilder.HasDefaultSchema(SchemaNames.Catalog);
+        modelBuilder.HasDefaultSchema(SchemaNames.Store);
+
+        // StoreX - QuotationProducts - Many to Many Relationship
+
+        modelBuilder.Entity<QuotationProduct>()
+            .HasKey(p => new { p.QuotationId, p.ProductId });
+
+        modelBuilder.Entity<QuotationProduct>()
+            .HasOne(p => p.Quotation)
+            .WithMany(pc => pc.QuotationProducts)
+            .HasForeignKey(p => p.QuotationId);
+
+        modelBuilder.Entity<QuotationProduct>()
+            .HasOne(p => p.Product)
+            .WithMany(pc => pc.QuotationProducts)
+            .HasForeignKey(p => p.ProductId);
+
+        modelBuilder.HasDefaultSchema(SchemaNames.Store);
+
+        // StoreX - DeliveryProducts - Many to Many Relationship
+
+        modelBuilder.Entity<DeliveryProduct>()
+            .HasKey(p => new { p.DeliveryId, p.ProductId });
+
+        modelBuilder.Entity<DeliveryProduct>()
+            .HasOne(p => p.Delivery)
+            .WithMany(pc => pc.DeliveryProducts)
+            .HasForeignKey(p => p.DeliveryId);
+
+        modelBuilder.Entity<DeliveryProduct>()
+            .HasOne(p => p.Product)
+            .WithMany(pc => pc.DeliveryProducts)
+            .HasForeignKey(p => p.ProductId);
+
+        modelBuilder.HasDefaultSchema(SchemaNames.Store);
+
+        // StoreX - InvoiceProducts - Many to Many Relationship
+
+        modelBuilder.Entity<InvoiceProduct>()
+            .HasKey(p => new { p.InvoiceId, p.ProductId });
+
+        modelBuilder.Entity<InvoiceProduct>()
+            .HasOne(p => p.Invoice)
+            .WithMany(pc => pc.InvoiceProducts)
+            .HasForeignKey(p => p.InvoiceId);
+
+        modelBuilder.Entity<InvoiceProduct>()
+            .HasOne(p => p.Product)
+            .WithMany(pc => pc.InvoiceProducts)
+            .HasForeignKey(p => p.ProductId);
+
+        modelBuilder.HasDefaultSchema(SchemaNames.Store);
+
     }
 }

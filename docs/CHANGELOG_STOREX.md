@@ -1,6 +1,22 @@
 # StoreX WebAPI Changelog
 
-## v0.0.7 - [Create Models for Office Side]()
+## v0.0.8 - [Create Request for Office Side Models]()
+
+**branch :** _storex_
+
+    Add:
+        - src/Core/Application/Store : Customer, Project, Quotation, QuotationProduct, Delivery, DeliveryProduct, Invoice, InvoiceProduct
+        - src/Host/Controllers/Store : Customer, Project, Quotation, QuotationProduct, Delivery, DeliveryProduct, Invoice, InvoiceProduct
+        - src/Core/Shared/Authorization/FSHPermissions.cs : Add Permissions for new Models.
+        - src/Infrastructure/Persistance/Configuration/ : Add EntityTypeConfiguration
+        - src/Infrastructure/Persistance/Context/ : Add new Tables and Relationships to Context
+
+    Edit:
+        - src/Core/Domain/Store : Client Model is now Customer.dot
+        - src/Migrators : Update InitializeDb Migrator
+        - src/Infrstructure/Store : Update Seeder
+
+## v0.0.7 - [Create Models for Office Side](https://github.com/rafitajaen/StoreX-WebAPI/tree/3d4adddcd583832e50e28c39e091a177c979e824)
 
 **branch :** _storex_
 
