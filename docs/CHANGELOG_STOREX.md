@@ -1,6 +1,13 @@
 # StoreX WebAPI Changelog
 
-## v0.0.6 - [Bugfixes in StoreProducts]()
+## v0.0.7 - [Create Models for Office Side]()
+
+**branch :** _storex_
+
+    Add:
+        - src/Core/Domain/Store : Client, Project, Quotation, QuotationProduct, Delivery, DeliveryProduct, Invoice, InvoiceProduct
+
+## v0.0.6 - [Bugfixes in StoreProducts](https://github.com/rafitajaen/StoreX-WebAPI/tree/5d7e5e920b1ec5a1cf18aac20bbd5ecfb5a33878)
 
 **branch :** _storex_
 
