@@ -1,6 +1,13 @@
 # StoreX WebAPI Changelog
 
-## v0.0.8 - [Create Request for Office Side Models]()
+## v0.0.9 - [Bugfixes in DeliveryProductsDetailsDto]()
+
+**branch :** _storex_
+
+    Edit:
+        - src/Core/Application/Store : Bugfixes in DeliveryProductDetailsDto for include Products
+
+## v0.0.8 - [Create Request for Office Side Models](https://github.com/rafitajaen/StoreX-WebAPI/tree/501d5841a3ed1e75b2f8fa33391f3439390cf4b7)
 
 **branch :** _storex_
 
