@@ -12,6 +12,14 @@ public class StoreProductsController : VersionedApiController
         return Mediator.Send(request);
     }
 
+    [HttpPost("alerts")]
+    [MustHavePermission(FSHAction.Search, FSHResource.StoreProducts)]
+    [OpenApiOperation("Search products by Stock Alerts.", "")]
+    public Task<PaginationResponse<StoreProductDto>> SearchAsync(SearchStoreProductsByAlertRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     [HttpGet("{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.StoreProducts)]
     [OpenApiOperation("Get product details.", "")]
@@ -48,8 +56,17 @@ public class StoreProductsController : VersionedApiController
 
     [HttpPost("export")]
     [MustHavePermission(FSHAction.Export, FSHResource.StoreProducts)]
-    [OpenApiOperation("Export a products.", "")]
+    [OpenApiOperation("Export products.", "")]
     public async Task<FileResult> ExportAsync(ExportStoreProductsRequest filter)
+    {
+        var result = await Mediator.Send(filter);
+        return File(result, "application/octet-stream", "StoreProductExports");
+    }
+
+    [HttpPost("exportAlert")]
+    [MustHavePermission(FSHAction.Export, FSHResource.StoreProducts)]
+    [OpenApiOperation("Export products that are in Stock Alerts.", "")]
+    public async Task<FileResult> ExportAsync(ExportStoreProductsByAlertRequest filter)
     {
         var result = await Mediator.Send(filter);
         return File(result, "application/octet-stream", "StoreProductExports");

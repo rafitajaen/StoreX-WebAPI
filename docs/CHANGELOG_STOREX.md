@@ -1,6 +1,16 @@
 # StoreX WebAPI Changelog
 
-## v0.0.9 - [Bugfixes in DeliveryProductsDetailsDto]()
+## v0.0.10 - [Fill stats with StoreX models and Stock Alerts Support](https://github.com/rafitajaen/StoreX-WebAPI/tree/501d5841a3ed1e75b2f8fa33391f3439390cf4b7)
+
+**branch :** _storex_
+
+    Add:
+        - src/Core/Application/Store/StoreProducts/ : Search and Export Requests for Stock Alerts.
+
+    Edit:
+        - src/Core/Application/Store/StoreProducts/ : Bugfix in StoreProductExportDto
+
+## v0.0.9 - [Bugfixes in DeliveryProductsDetailsDto](https://github.com/rafitajaen/StoreX-WebAPI/tree/decce606983c5dda81b725afb93097a36171f29d)
 
 **branch :** _storex_
 
