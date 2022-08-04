@@ -4,16 +4,6 @@ public class SearchOrderProductsRequest : PaginationFilter, IRequest<PaginationR
     public Guid? OrderId { get; set; }
 }
 
-public class OrderProductsBySearchRequestSpec : EntitiesByPaginationFilterSpec<OrderProduct, OrderProductDetailsDto>
-{
-    public OrderProductsBySearchRequestSpec(SearchOrderProductsRequest request)
-        : base(request) =>
-        Query
-            .Include(op => op.Product)
-            .OrderBy(op => op.Product.Name, !request.HasOrderBy())
-            .Where(op => op.OrderId.Equals(request.OrderId!.Value), request.OrderId.HasValue);
-}
-
 public class SearchOrderProductsRequestHandler : IRequestHandler<SearchOrderProductsRequest, PaginationResponse<OrderProductDetailsDto>>
 {
     private readonly IReadRepository<OrderProduct> _repository;

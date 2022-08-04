@@ -5,23 +5,6 @@ public class SearchOrdersRequest : PaginationFilter, IRequest<PaginationResponse
     public Guid? SupplierId { get; set; }
 }
 
-public class OrdersBySearchRequestSpec : EntitiesByPaginationFilterSpec<Order, OrderDto>
-{
-    public OrdersBySearchRequestSpec(SearchOrdersRequest request)
-        : base(request) =>
-        Query.OrderBy(c => c.Name, !request.HasOrderBy());
-}
-
-public class OrdersBySearchRequestWithSuppliersSpec : EntitiesByPaginationFilterSpec<Order, OrderDto>
-{
-    public OrdersBySearchRequestWithSuppliersSpec(SearchOrdersRequest request)
-        : base(request) =>
-        Query
-            .Include(p => p.Supplier)
-            .OrderBy(c => c.Name, !request.HasOrderBy())
-            .Where(p => p.SupplierId.Equals(request.SupplierId!.Value), request.SupplierId.HasValue);
-}
-
 public class SearchOrdersRequestHandler : IRequestHandler<SearchOrdersRequest, PaginationResponse<OrderDto>>
 {
     private readonly IReadRepository<Order> _repository;

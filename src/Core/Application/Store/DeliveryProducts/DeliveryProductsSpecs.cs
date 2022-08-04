@@ -8,6 +8,7 @@ public class DeliveryProductSpecs
     // DeliveryProduct By Ids
     // DeliveryProduct By Delivery
     // DeliveryProduct By Delivery With Product
+    // DeliveryProduct By Search Request
 }
 
 public class DeliveryProductByIdSpec : Specification<DeliveryProduct, DeliveryProductDetailsDto>, ISingleResultSpecification
@@ -34,4 +35,14 @@ public class DeliveryProductByDeliveryWithProductSpec : Specification<DeliveryPr
         Query
             .Where(dp => dp.DeliveryId == DeliveryId)
             .Include(dp => dp.Product);
+}
+
+public class DeliveryProductsBySearchRequestSpec : EntitiesByPaginationFilterSpec<DeliveryProduct, DeliveryProductDetailsDto>
+{
+    public DeliveryProductsBySearchRequestSpec(SearchDeliveryProductsRequest request)
+        : base(request) =>
+        Query
+            .Include(dp => dp.Product)
+            .OrderBy(dp => dp.Product.Name, !request.HasOrderBy())
+            .Where(dp => dp.DeliveryId.Equals(request.DeliveryId!.Value), request.DeliveryId.HasValue);
 }

@@ -97,30 +97,6 @@ public class ProjectConfig : IEntityTypeConfiguration<Project>
     }
 }
 
-public class QuotationConfig : IEntityTypeConfiguration<Quotation>
-{
-    public void Configure(EntityTypeBuilder<Quotation> builder)
-    {
-        builder
-        .ToTable("Quotations", SchemaNames.Store)
-        .IsMultiTenant();
-
-        builder
-            .Property(b => b.Name)
-                .HasMaxLength(1024);
-    }
-}
-
-public class QuotationProductConfig : IEntityTypeConfiguration<QuotationProduct>
-{
-    public void Configure(EntityTypeBuilder<QuotationProduct> builder)
-    {
-        builder
-        .ToTable("QuotationProducts", SchemaNames.Store)
-        .IsMultiTenant();
-    }
-}
-
 public class DeliveryConfig : IEntityTypeConfiguration<Delivery>
 {
     public void Configure(EntityTypeBuilder<Delivery> builder)
@@ -141,30 +117,6 @@ public class DeliveryProductConfig : IEntityTypeConfiguration<DeliveryProduct>
     {
         builder
         .ToTable("DeliveryProducts", SchemaNames.Store)
-        .IsMultiTenant();
-    }
-}
-
-public class InvoiceConfig : IEntityTypeConfiguration<Invoice>
-{
-    public void Configure(EntityTypeBuilder<Invoice> builder)
-    {
-        builder
-        .ToTable("Invoices", SchemaNames.Store)
-        .IsMultiTenant();
-
-        builder
-            .Property(b => b.Name)
-                .HasMaxLength(1024);
-    }
-}
-
-public class InvoiceProductConfig : IEntityTypeConfiguration<InvoiceProduct>
-{
-    public void Configure(EntityTypeBuilder<InvoiceProduct> builder)
-    {
-        builder
-        .ToTable("InvoiceProducts", SchemaNames.Store)
         .IsMultiTenant();
     }
 }

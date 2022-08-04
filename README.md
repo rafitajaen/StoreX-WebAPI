@@ -1,160 +1,174 @@
-[![GitHub](https://img.shields.io/github/license/fullstackhero/dotnet-webapi-boilerplate?color=2da44e)](https://github.com/fullstackhero/dotnet-webapi-boilerplate/blob/master/LICENSE)
-[![Discord](https://img.shields.io/discord/878181478972928011?color=%237289da&label=Discord&logo=discord&logoColor=%237289da)](https://discord.gg/yQWpShsKrf)
-[![FullStackHero.WebAPI.Boilerplate on NuGet](https://img.shields.io/nuget/v/FullStackHero.WebAPI.Boilerplate?label=FullStackHero.WebAPI.Boilerplate)](https://www.nuget.org/packages/FullStackHero.WebAPI.Boilerplate/)
-[![Nuget downloads](https://img.shields.io/nuget/dt/FullStackHero.WebAPI.Boilerplate?color=2da44e&label=nuget%20downloads&logo=nuget)](https://www.nuget.org/packages/FullStackHero.WebAPI.Boilerplate/)
+# StoreX - .NET 6 FullStack Web Application
 
-<a href="https://twitter.com/intent/follow?screen_name=iammukeshm">
-    <img src="https://img.shields.io/twitter/follow/iammukeshm.svg?label=Follow%20@iammukeshm" alt="Follow @iammukeshm" />
-</a> &nbsp; <a href="https://twitter.com/intent/follow?screen_name=codewithmukesh">
-    <img src="https://img.shields.io/twitter/follow/codewithmukesh.svg?label=Follow%20@codewithmukesh" alt="Follow @codewithmukesh" />
-</a>
+**StoreX** is a **FullStack Web Application** (`WebAPI` + `Blazor WebAssembly`) written in **.NET 6** and built with [FullStackHero's Boilerplate]() and [MudBlazor Components Library]().
 
-<p>
+It follows _Clean Architecture Principles_ and is composed of **two main repositories**:
 
-<p align="center">
-    <img src="https://codewithmukesh.com/wp-content/uploads/2022/02/fullstackhero-dotnet-webapi-banner.png" alt="fullstackhero">
-</p>
+- [**StoreX .NET 6 WebAPI**](https://github.com/rafitajaen/StoreX-WebAPI) (_Back-end_) : A RESTful API that meets _Swagger/OpenAPI Specs_ for CRUD, with non-read API calls secured with JWT. This API also includes _MultiTenancy support_ and _Users Authentication_.
+- [**StoreX Blazor WebAssembly**](https://github.com/rafitajaen/StoreX-Blazor-Wasm) (_Front-end_) : A client side WASM application that consumes StoreX API thanks to NSwag Client Service Generator. It uses MudBlazor Components and implements _Localization_ for multilanguage support.
 
-## What's fullstackhero's .NET Web API Boilerplate?
+The **main purpose** of the application is to **support the management of a store** (or warehouse) as simply as possible.
 
-fullstackhero's .NET Web API Boilerplate is a starting point for your next `.NET 6 Clean Architecture Project` that incorporates the most essential packages and features your projects will ever need including out of the box Multi-Tenancy support. This project can save well over `200+ hours` of development time for your team.
+It allows the user to manage _suppliers, orders, stock, customers, projects and deliveries_.
 
-> As the name suggests, this is an API / Server Boilerplate. You can find other Client Boilerplates that consume this API under `@fullstackhero` handle.
-> - Find `Blazor WebAssembly Boilerplate` here - https://github.com/fullstackhero/blazor-wasm-boilerplate
+The app functions includes **alerts for product shortage**, and **teamwork is also possible** because the administrator can control the **roles and permissions** of each user.
 
-## Goals
+## Personal Milestones
 
-The goal of this repository is to provide a complete and feature-rich starting point for any .NET Developer / Team to kick-start their next major project using .NET 6 Web API. This also serves the purpose of learning advanced concepts and implementations such as `Multitenancy, CQRS, Onion Architecture, Clean Coding standards` and so on.
+The aim of both repositories is to familiarise myself with the creation of a .NET 6 API, and to have a first approach to advanced concepts and implementations such as _Clean Coding Standards_, _JWT_, _Databases_ and _Multitenancy_.
 
-## Features
-
-- [x] Built on .NET 6.0
-- [x] Follows Clean Architecture Principles
-- [x] Domain Driven Design
-- [ ] Completely Documented at [fullstackhero.net](https://fullstackhero.net)
-- [x] Multi Tenancy Support with Finbuckle
-  - [x] Create Tenants with Multi Database / Shared Database Support
-  - [x] Activate / Deactivate Tenants on Demand
-  - [x] Upgrade Subscription of Tenants - Add More Validity Months to each tenant!
-- [x] Supports MySQL, MSSQL, Oracle & PostgreSQL!
-
-<details>
-  <summary>Click to See More!</summary>
-
-- [x] Uses Entity Framework Core as DB Abstraction
-- [x] Flexible Repository Pattern
-- [x] Dapper Integration for Optimal Performance
-- [x] Serilog Integration with various Sinks - File, SEQ, Kibana
-- [x] OpenAPI - Supports Client Service Generation
-- [x] Mapster Integration for Quicker Mapping
-- [x] API Versioning
-- [x] Response Caching - Distributed Caching + REDIS
-- [x] Fluent Validations
-- [x] Audit Logging
-- [x] Advanced User & Role Based Permission Management
-- [x] Code Analysis & StyleCop Integration with Rulesets
-- [x] JSON Based Localization with Caching
-- [x] Hangfire Support - Secured Dashboard
-- [x] File Storage Service
-- [x] Test Projects
-- [x] JWT & Azure AD Authentication
-- [x] MediatR - CQRS
-- [x] SignalR Notifications
-- [x] & Much More
-</details>
-
-## Documentation
-
-Read Documentation related to this Boilerplate here - https://fullstackhero.net/dotnet-webapi-boilerplate/
-> Feel free to contribute to the Documentation Repository - https://github.com/fullstackhero/docs
+- [x] Integrate my work into a project previously developed and ready for production.
+  - [x] Use GitHub Forks and develop on a feature branch.
+- [x] Follow Clean Architecture Principles.
+- [x] Code First DataBase Creation.
+  - [x] AutoSeed Database.
+  - [x] Create [1:1], [1:n] and [n:n] relationships.
+- [x] Approach to Domain Driven Design.
+  - [x] Collaborate with a domain expert to interact with the fundamental concepts of the problem.
+  - [x] Create Models, Requests, Specs, Responses (Dtos) and Controllers.
+- [x] Master the use of MudBlazor for the creation of components.
+- [x] Integrate API and Client togheter with the creation of an autogenerated OpenAPI Client Service.
+- [] Use Azure DevOps for (CI/CD).
+- [] Use Docker for self-host app.
+- [] Tests.
+- [x] Record the complete development progress of the application in a [CHANGELOG](./docs/CHANGELOG_STOREX.md).
+- [x] Pushing myself to work in an English-only enviroment.
 
 ## Getting Started
 
-To get started with this Boilerplate, here are the available options.
+1. Make sure you have the API running. For that you have to clone StoreX Backend and run it.
 
-- Install using `dotnet new` . Use this for release versions of the Boilerplate only.
-- Fork the Repository. Use this if you want to always keep your version of the Boilerplate up-to date with the latest changes.
+   > git clone https://github.com/rafitajaen/StoreX-WebAPI.git
 
-> Make sure that your DEV enviroment is setup, [Read the Development Environment Guide](https://fullstackhero.net/dotnet-webapi-boilerplate/general/development-environment/)
+   > dotnet run --project src/Host
 
-## Forking the Repository
+2. Open a new window in your IDE. Then clone StoreX Frontend and run it.
 
-You would probably need to take this approach if you want to keep your source code upto date with the latest changes. To get started based on this repository, you need to get a copy locally. You have three options: fork, clone, or download.
+   > git clone https://github.com/rafitajaen/StoreX-Blazor-Wasm.git
 
-- Make a fork of this repository in your Github account.
-- Create your new `dotnet-webapi-boilerplate` personal project by cloning the forked repository on your personal github.
-- Setup an upstream remote on your personal project pointing to your forked repository using command `git remote add upstream https://github.com/{githubuseraccount}/dotnet-webapi-boilerplate` and `git remote set-url --push upstream DISABLE`
+   > dotnet run --project src/Host
 
-For step by step instructions, [follow this](https://discord.com/channels/878181478972928011/892573122186838046/933513103688224838) and [this](https://gist.github.com/0xjac/85097472043b697ab57ba1b1c7530274).
+3. You can find instructions on your terminal to open the application.
 
+   > By default the app is running in https://localhost:5002
 
-### Using the .NET CLI
+4. If you want to access to Swagger
 
-> 0.0.6 RC is now released!
+   > By default it is in https://localhost:5001/swagger
 
-Open up your Command Prompt / Powershell and run the following command to install the solution template.
+5. The database is created and seeded automatically during first backend running.
 
-```powershell
-dotnet new --install FullStackHero.WebAPI.Boilerplate
-```
-This would install the `fullstackhero .NET WebAPI Boilerplate` template globally on your machine. With that done, let's see how you can start generating complete .NET WebAPI Solutions seamlessly.
+   > A superadmin user is also created automatically.
 
-Simply navigate to a new directory (wherever you want to place your new solution), and open up Command Prompt at the opened directory.
+6. You can login directly withour register.
 
-Run the following command. Note that, in this demonstration, I am naming my new solution as `FSH.Starter`.
+   > Click in "FILL ADMINISTRATOR CREDENTIALS" (It is below "SIGN IN" button in Login Page)
 
-```powershell
-dotnet new fsh-api -o FSH.Starter
-```
+7. If you cannot find it, you can fill it by yourself.
 
-For further steps and details, [Read the Getting Started Guide](https://fullstackhero.net/dotnet-webapi-boilerplate/general/getting-started/)
+   > admin@root.com - 123Pa$$word! - root
 
-## Important Links & Documentations
+## StoreX WebAPI Documentation
 
-Overview - [Read](https://fullstackhero.net/dotnet-webapi-boilerplate/general/overview/)
+### The path that an `Entity` follows to become an `Endpoint`
 
-Getting Started - [Read](https://fullstackhero.net/dotnet-webapi-boilerplate/general/getting-started/)
+Entity <-> Request (DTO) <- Handler (using Specs) -> Response (DTO) <-> EndPoint (Controller)
 
-Development Environment - [Learn about setting up the DEV environment](https://fullstackhero.net/dotnet-webapi-boilerplate/general/development-environment/)
+You can find the implementatios of:
 
-Track Progress - [Release 1.0 Milestones](https://github.com/fullstackhero/dotnet-webapi-boilerplate/milestone/1)
+- `Entities` in [src/Core/Domain/Store/](https://github.com/rafitajaen/StoreX-WebAPI/tree/storex/src/Core/Domain/Store)
+- `Requests`, `Handlers`, `Specs` and `DTOs` in [src/Core/Application/Store/](https://github.com/rafitajaen/StoreX-WebAPI/tree/storex/src/Core/Application/Store)
+- `Controllers` in [src/Host/Controllers/Store/](https://github.com/rafitajaen/StoreX-WebAPI/tree/storex/src/Host/Controllers/Store)
 
-Participate in Discussions - [QNA & General Discussions](https://github.com/fullstackhero/dotnet-webapi-boilerplate/discussions)
+### StoreX Database Diagram
 
-Join our Discord - [fullstackhero @ Discord](https://discord.gg/gdgHRt4mMw)
+As you have read before, the main purpose of the application is to manage a store (or warehouse) in the easiest possible way.
 
-## Changelogs
+This statement implies that the **product** is the centerpiece of the project, in this case we will name it `StoreProduct`.
 
-[View Complete Changelogs.](https://github.com/fullstackhero/dotnet-webapi-boilerplate/blob/main/Changelogs.md)
+> **Annotation**: In this project there are two different entities, `Product` and `StoreProduct`. The `Product` entity is a legacy of the original project and is not integrated in StoreX App, so you can ignore it.
 
-## Community
+We can separate the database design into three different parts:
 
-- Discord [@fullstackhero](https://discord.gg/gdgHRt4mMw)
-- Facebook Page [@codewithmukesh](https://facebook.com/codewithmukesh)
-- Youtube Channel [@codewithmukesh](https://youtube.com/c/codewithmukesh)
+- **Left side**: Related to the receipt of `StoreProducts` from a `Supplier`, through `Orders`.
+- **Central**: Related to having the control of the `Stock`.
+- **Right side**: Related to the `Delivery` of `StoreProducts` to a certain `Project`. Each `Project` belongs to a certain `Customer`.
 
-## Contributors
+<p align="center">
+    <img src="./docs/StoreX-Database-Diagram.PNG" alt="StoreX Database Diagram">
+</p>
 
-Submit your PR and join the elite list!
+### Context, Seeders, and Permissions
 
-<a href="https://github.com/fullstackhero/dotnet-webapi-boilerplate/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=fullstackhero/dotnet-webapi-boilerplate" />
-</a>
+In case you need to consult the implementation of the other parts of the API:
+
+- `Context` in [src/Infrastructure/Persistence/Context](https://github.com/rafitajaen/StoreX-WebAPI/blob/storex/src/Infrastructure/Persistence/Context/ApplicationDbContext.cs)
+- `Seeder` in [src/Infrastructure/Persistence/Initialization/Store](https://github.com/rafitajaen/StoreX-WebAPI/tree/storex/src/Infrastructure/Persistence/Initialization)
+- `Permissions` in [src/Core/Shared/Authorization](https://github.com/rafitajaen/StoreX-WebAPI/blob/storex/src/Core/Shared/Authorization/FSHPermissions.cs)
+
+## StoreX WebAssembly Documentation
+
+### User Authentication
+
+StoreX is a multitenant application. This means that all users of the application share a single database between them.
+
+This database is divided into fractions, which we can commonly call `Tenants`.
+
+Each `Tenant` will have an administrator. This administrator will be in charge of granting `read`, `write`, `update` and `delete` permissions to the users.
+
+A user can only access the data belonging to his tenant, through `Authentication` and `Permissions`.
+
+In case you need to consult the implementation about Users Authentication:
+
+- `/login` and `/users/self-register` in [src/Client/Pages/Authentication](https://github.com/rafitajaen/StoreX-Blazor-Wasm/tree/storex/src/Client/Pages/Authentication)
+
+In order to provide a demo of the application, you can find a button called "**FILL ADMINISTRATOR CREDENTIALS**" in `/login` page, which automatically fills the login form with the credentials of the application's super administrator.
+
+### Homepage and Sections
+
+Once the user is authenticated, the sections of the application will be displayed in the drawer (on the left side) depending on the permissions that each specific user has been assigned.
+
+The app has four main sections:
+
+- **Start**
+  - Home
+  - Dashboard
+- **Alerts**
+  - Stock Alerts
+- **Store Management**
+  - Suppliers
+  - Warehouse
+  - Customers
+- **Administration**
+  - Logs
+  - Users
+  - Roles
+  - Tenants
+
+The **Start** section is related to the user's landing in the application. In **`Home`** page you can find a quick guide to start using the app, and other useful links about the project and the authors. You will also find the **`/dashboard`** page, where you can check the status of your database and the number of available entities at a glance.
+
+The **Alerts** section is about products in a state of shortage. With a simple table, the user can quickly see which products in the warehouse need to be re-stocked, depending on the alerts that have been programmed. `Alerts` can be programmed here and on the warehouse page.
+
+The **Store Management** section is where the magic happens. On the **`/suppliers`** page, the user can manage the `Orders` of each supplier. On the **`/warehouse`** page, the user can control the stock of each `Product` and set `Alarms` individually for each product. And finally, on the **`/customers`** page. The user can have control over the `Deliveries` made to each customer's `Project`.
+
+Finally, in the **Administration** section, which is only available to users with an `Admin Role`. Here, you can access the logs, as well as manage users, roles and tenats of the application.
 
 ## License
 
 This project is licensed with the [MIT license](LICENSE).
 
-## Support :star:
+## Credits and Resource Links
 
-Has this Project helped you learn something New? or Helped you at work?
-Here are a few ways by which you can support.
+I would not have managed to complete this project without the extensive knowledge of experienced colleagues sharing their knowledge out there. The following are items that were especially helpful during the creation of the application.
 
--   Leave a star! :star:
--   Recommend this awesome project to your colleagues. 🥇
--   Do consider endorsing me on LinkedIn for ASP.NET Core - [Connect via LinkedIn](https://codewithmukesh.com/linkedin) 🦸
--   Or, If you want to support this project in the long run, [consider buying me a coffee](https://www.buymeacoffee.com/codewithmukesh)! ☕
+[C#10 and .NET 6 - Modern Cross-Platform Development](https://www.packtpub.com/product/c-10-and-net-6-modern-cross-platform-development-sixth-edition/9781801077361) by Mark J. Price
 
-<br>
+[Complete Blazor and ASP.NET API Development](https://www.udemy.com/course/end-to-end-aspnet-core-31-api-and-blazor-development/) by Trevoir Williams
 
-<a href="https://www.buymeacoffee.com/codewithmukesh"><img width="250" alt="black-button" src="https://user-images.githubusercontent.com/31455818/138557309-27587d91-7b82-4cab-96bb-90f4f4e600f1.png" ></a>
+[NET 6 JWT Authentication with example API](https://jasonwatmore.com/post/2021/12/14/net-6-jwt-authentication-tutorial-with-example-api) by Jason Watmore
+
+[.NET Blazor Authentication and Role-Based Authentication](https://youtu.be/Yh16E2u2pio) by Patrick God
+
+[ASP.NET Core WebAPI .NET 6 - One to Many Relationships](https://youtu.be/DWi-VHElmRE) by Teddy Smith
+
+[Working with Forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)

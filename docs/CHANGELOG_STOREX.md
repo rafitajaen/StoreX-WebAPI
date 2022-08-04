@@ -1,6 +1,17 @@
 # StoreX WebAPI Changelog
 
-## v0.0.10 - [Fill stats with StoreX models and Stock Alerts Support](https://github.com/rafitajaen/StoreX-WebAPI/tree/501d5841a3ed1e75b2f8fa33391f3439390cf4b7)
+## v0.0.11 - [Clean code and make it ready for prod]()
+
+**branch :** _storex_
+
+    Add:
+        - README: Ready Readme for prod and added a database diagram.
+
+    Edit:
+        - src/Core/ : Clean Code for prod
+        - src/Infrstructure/Persistence/Initialization/Store: Edit Seeders with real-world data.
+
+## v0.0.10 - [Fill stats with StoreX models and Stock Alerts Support](https://github.com/rafitajaen/StoreX-WebAPI/tree/688d3349b2823bdb0fd492828102e8af6e449a40)
 
 **branch :** _storex_
 

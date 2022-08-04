@@ -7,6 +7,9 @@ public class DeliverySpecs
     // Delivery By Id
     // Delivery By Name
     // Delivery By Project
+
+    // Delivery By Search Request
+    // Delivery By Search Request With Project
 }
 
 public class DeliveryByIdSpec : Specification<Delivery, DeliveryDto>, ISingleResultSpecification
@@ -25,4 +28,21 @@ public class DeliverysByProjectSpec : Specification<Delivery>
 {
     public DeliverysByProjectSpec(Guid projectId) =>
         Query.Where(p => p.ProjectId == projectId);
+}
+
+public class DeliveriesBySearchRequestSpec : EntitiesByPaginationFilterSpec<Delivery, DeliveryDto>
+{
+    public DeliveriesBySearchRequestSpec(SearchDeliveriesRequest request)
+        : base(request) =>
+        Query.OrderBy(c => c.Name, !request.HasOrderBy());
+}
+
+public class DeliveriesBySearchRequestWithProjectsSpec : EntitiesByPaginationFilterSpec<Delivery, DeliveryDto>
+{
+    public DeliveriesBySearchRequestWithProjectsSpec(SearchDeliveriesRequest request)
+        : base(request) =>
+        Query
+            .Include(p => p.Project)
+            .OrderBy(c => c.Name, !request.HasOrderBy())
+            .Where(p => p.ProjectId.Equals(request.ProjectId!.Value), request.ProjectId.HasValue);
 }

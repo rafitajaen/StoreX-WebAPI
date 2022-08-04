@@ -17,7 +17,6 @@ namespace Migrators.MSSQL.Migrations.Application
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Store")
                 .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -62,7 +61,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands", "Store");
+                    b.ToTable("Brands");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -118,7 +117,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Products", "Store");
+                    b.ToTable("Products");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });

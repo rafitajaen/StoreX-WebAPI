@@ -12,14 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Migrators.MSSQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220801161013_InitializeStoreDb")]
+    [Migration("20220804113910_InitializeStoreDb")]
     partial class InitializeStoreDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Store")
                 .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -64,7 +63,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands", "Store");
+                    b.ToTable("Brands");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -120,7 +119,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Products", "Store");
+                    b.ToTable("Products");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });

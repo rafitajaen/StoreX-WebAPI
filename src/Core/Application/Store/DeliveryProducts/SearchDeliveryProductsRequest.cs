@@ -5,16 +5,6 @@ public class SearchDeliveryProductsRequest : PaginationFilter, IRequest<Paginati
     public Guid? DeliveryId { get; set; }
 }
 
-public class DeliveryProductsBySearchRequestSpec : EntitiesByPaginationFilterSpec<DeliveryProduct, DeliveryProductDetailsDto>
-{
-    public DeliveryProductsBySearchRequestSpec(SearchDeliveryProductsRequest request)
-        : base(request) =>
-        Query
-            .Include(dp => dp.Product)
-            .OrderBy(dp => dp.Product.Name, !request.HasOrderBy())
-            .Where(dp => dp.DeliveryId.Equals(request.DeliveryId!.Value), request.DeliveryId.HasValue);
-}
-
 public class SearchDeliveryProductsRequestHandler : IRequestHandler<SearchDeliveryProductsRequest, PaginationResponse<DeliveryProductDetailsDto>>
 {
     private readonly IReadRepository<DeliveryProduct> _repository;

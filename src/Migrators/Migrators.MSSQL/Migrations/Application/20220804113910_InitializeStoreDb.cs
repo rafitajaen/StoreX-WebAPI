@@ -41,7 +41,6 @@ namespace Migrators.MSSQL.Migrations.Application
 
             migrationBuilder.CreateTable(
                 name: "Brands",
-                schema: "Store",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -190,7 +189,6 @@ namespace Migrators.MSSQL.Migrations.Application
 
             migrationBuilder.CreateTable(
                 name: "Products",
-                schema: "Store",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -213,7 +211,6 @@ namespace Migrators.MSSQL.Migrations.Application
                     table.ForeignKey(
                         name: "FK_Products_Brands_BrandId",
                         column: x => x.BrandId,
-                        principalSchema: "Store",
                         principalTable: "Brands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -677,7 +674,6 @@ namespace Migrators.MSSQL.Migrations.Application
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
-                schema: "Store",
                 table: "Products",
                 column: "BrandId");
 
@@ -772,8 +768,7 @@ namespace Migrators.MSSQL.Migrations.Application
                 schema: "Store");
 
             migrationBuilder.DropTable(
-                name: "Products",
-                schema: "Store");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "QuotationProducts",
@@ -812,8 +807,7 @@ namespace Migrators.MSSQL.Migrations.Application
                 schema: "Store");
 
             migrationBuilder.DropTable(
-                name: "Brands",
-                schema: "Store");
+                name: "Brands");
 
             migrationBuilder.DropTable(
                 name: "Quotations",

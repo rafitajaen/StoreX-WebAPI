@@ -2,10 +2,9 @@ using System.Reflection;
 using FSH.WebApi.Application.Common.Interfaces;
 using FSH.WebApi.Domain.Store;
 using FSH.WebApi.Infrastructure.Persistence.Context;
-using FSH.WebApi.Infrastructure.Persistence.Initialization;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.WebApi.Infrastructure.Store;
+namespace FSH.WebApi.Infrastructure.Persistence.Initialization.Store;
 
 public class StoreSeeder : ICustomSeeder
 {
@@ -55,9 +54,10 @@ public class StoreSeeder : ICustomSeeder
             _logger.LogInformation("Seeded {Suppliers} Complete.", nameof(_db.Suppliers));
         }
 
-        var googleSupplier = _db.Suppliers.Where(s => s.Name.Contains("Google")).FirstOrDefault();
-        var amazonSupplier = _db.Suppliers.Where(s => s.Name.Contains("Amazon")).FirstOrDefault();
-        var facebookSupplier = _db.Suppliers.Where(s => s.Name.Contains("Facebook")).FirstOrDefault();
+        var supplier1 = _db.Suppliers.Where(s => s.Name.Contains("PORTLANND")).FirstOrDefault();
+        var supplier2 = _db.Suppliers.Where(s => s.Name.Contains("CHEMICALS")).FirstOrDefault();
+        var supplier3 = _db.Suppliers.Where(s => s.Name.Contains("ELKON")).FirstOrDefault();
+        var supplier4 = _db.Suppliers.Where(s => s.Name.Contains("SONNEN")).FirstOrDefault();
 
         //////////////////////////////
         // Seed PRODUCTS
@@ -92,12 +92,12 @@ public class StoreSeeder : ICustomSeeder
             _logger.LogInformation("Seeded {Products} Complete.", nameof(_db.Products));
         }
 
-        var silicatoProduct = _db.StoreProducts.Where(sp => sp.Name.Contains("SILICATO")).FirstOrDefault();
-        var canalProduct = _db.StoreProducts.Where(sp => sp.Name.Contains("CANAL")).FirstOrDefault();
-        var casonetoProduct = _db.StoreProducts.Where(sp => sp.Name.Contains("CASONETO")).FirstOrDefault();
-        var brocaProduct = _db.StoreProducts.Where(sp => sp.Name.Contains("BROCA")).FirstOrDefault();
-        var cintaProduct = _db.StoreProducts.Where(sp => sp.Name.Contains("CINTA")).FirstOrDefault();
-        var foseadoProduct = _db.StoreProducts.Where(sp => sp.Name.Contains("FOSEADO")).FirstOrDefault();
+        var product1 = _db.StoreProducts.Where(sp => sp.Name.Contains("GROUND MOUNTING")).FirstOrDefault();
+        var product2 = _db.StoreProducts.Where(sp => sp.Name.Contains("CEMENT COATING")).FirstOrDefault();
+        var product3 = _db.StoreProducts.Where(sp => sp.Name.Contains("VIBRATING TABLE")).FirstOrDefault();
+        var product4 = _db.StoreProducts.Where(sp => sp.Name.Contains("ROBINIA")).FirstOrDefault();
+        var product5 = _db.StoreProducts.Where(sp => sp.Name.Contains("GP-RPL")).FirstOrDefault();
+        var product6 = _db.StoreProducts.Where(sp => sp.Name.Contains("POCKETEVO")).FirstOrDefault();
 
         //////////////////////////////
         // Seed ORDERS
@@ -109,10 +109,11 @@ public class StoreSeeder : ICustomSeeder
 
             var orders = new List<Order>
             {
-                new Order("Order 1A", "Order 1A from Google", true, false, googleSupplier!.Id ),
-                new Order("Order 2A", "Order 2A from Amazon", true, false, amazonSupplier!.Id ),
-                new Order("Order 3A", "Order 3A from Google", true, false, googleSupplier!.Id ),
-                new Order("Order 4A", "Order 4A from Facebook", true, false, facebookSupplier!.Id ),
+                new Order("Order 1A - New Vibration Table", "First order of vibration tables", true, false, supplier1!.Id ),
+                new Order("Order 2A - Wood", "Robinia squared timber for a customer request", true, false, supplier2!.Id ),
+                new Order("Order 3A - Cement Stuff", "Cement coating and a Vibration table because we ran out of stock", true, false, supplier1!.Id ),
+                new Order("Order 4A - Electric Stuff", "Items needed in a customer's project", true, false, supplier3!.Id ),
+                new Order("Order 5A - Mounting system", "Re-stockage of mounting systems", true, false, supplier4!.Id ),
             };
 
             // Here you can use your own logic to populate the database.
@@ -134,6 +135,7 @@ public class StoreSeeder : ICustomSeeder
         var order2A = _db.Orders.Where(sp => sp.Name.Contains("Order 2A")).FirstOrDefault();
         var order3A = _db.Orders.Where(sp => sp.Name.Contains("Order 3A")).FirstOrDefault();
         var order4A = _db.Orders.Where(sp => sp.Name.Contains("Order 4A")).FirstOrDefault();
+        var order5A = _db.Orders.Where(sp => sp.Name.Contains("Order 5A")).FirstOrDefault();
 
         //////////////////////////////
         // Seed ORDERPRODUCTS
@@ -145,23 +147,18 @@ public class StoreSeeder : ICustomSeeder
 
             var orderProducts = new List<OrderProduct>
             {
-                // Order 1A - Product CASONETO
-                new OrderProduct(order1A!.Id, casonetoProduct!.Id, 2),
+                new OrderProduct(order1A!.Id, product3!.Id, 5),
+                new OrderProduct(order1A!.Id, product2!.Id, 18),
 
-                // Order 1A - Product BROCA HILTI
-                new OrderProduct(order1A!.Id, brocaProduct!.Id, 4),
+                new OrderProduct(order2A!.Id, product4!.Id, 20),
 
-                // Order 1A - Product FOSEADO
-                new OrderProduct(order1A!.Id, foseadoProduct!.Id, 41),
+                new OrderProduct(order3A!.Id, product2!.Id, 40),
+                new OrderProduct(order3A!.Id, product3!.Id, 40),
 
-                // Order 2A - Product CANAL
-                new OrderProduct(order2A!.Id, canalProduct!.Id, 19),
+                new OrderProduct(order4A!.Id, product5!.Id, 95),
+                new OrderProduct(order4A!.Id, product6!.Id, 15),
 
-                // Order 2A - Product CINTA
-                new OrderProduct(order2A!.Id, cintaProduct!.Id, 111),
-
-                // Order 3A - Product SILICATO
-                new OrderProduct(order3A!.Id, silicatoProduct!.Id, 29)
+                new OrderProduct(order5A!.Id, product1!.Id, 3),
             };
 
             // Here you can use your own logic to populate the database.
@@ -208,8 +205,8 @@ public class StoreSeeder : ICustomSeeder
             _logger.LogInformation("Seeded {Customers} Complete.", nameof(_db.Customers));
         }
 
-        var toshiba = _db.Customers.Where(p => p.Name.Contains("Toshiba")).FirstOrDefault();
-        var pilot = _db.Customers.Where(p => p.Name.Contains("PILOT")).FirstOrDefault();
+        var customer1 = _db.Customers.Where(p => p.Name.Contains("INOXYDA")).FirstOrDefault();
+        var customer2 = _db.Customers.Where(p => p.Name.Contains("INNOVARIA")).FirstOrDefault();
 
         //////////////////////////////
         // Seed Projects
@@ -221,8 +218,8 @@ public class StoreSeeder : ICustomSeeder
 
             var projects = new List<Project>
             {
-                new Project("Proyecto1", "Descripción Proyecto 1 de PILOT", false, pilot!.Id),
-                new Project("Proyecto2", "Descripción Proyecto 2 de Toshiba", false, toshiba!.Id),
+                new Project("P1 - Oregon City Hall", "Construction of 5 new offices", false, customer1!.Id),
+                new Project("P2 - O'Donnells Pub", "Initial electric installation", false, customer2!.Id),
             };
 
             // Here you can use your own logic to populate the database.
@@ -240,40 +237,8 @@ public class StoreSeeder : ICustomSeeder
             _logger.LogInformation("Seeded {Projects} Complete.", nameof(_db.Projects));
         }
 
-        var project1 = _db.Projects.Where(p => p.Name.Contains("Proyecto1")).FirstOrDefault();
-        var project2 = _db.Projects.Where(p => p.Name.Contains("Proyecto2")).FirstOrDefault();
-
-        //////////////////////////////
-        // Seed Quotations
-        //////////////////////////////
-
-        if (!_db.Quotations.Any())
-        {
-            _logger.LogInformation("Started to Seed {Quotations}.", nameof(_db.Quotations));
-
-            var quotations = new List<Quotation>
-            {
-                new Quotation("Quotation1", "Descripción Quotation 1 del Proyecto2", false, project2!.Id),
-                new Quotation("Quotation2", "Descripción Quotation 2 del Proyecto1", false, project1!.Id),
-            };
-
-            // Here you can use your own logic to populate the database.
-
-            if (quotations != null)
-            {
-                foreach (var op in quotations)
-                {
-                    _logger.LogInformation("Seeding {Quotation} => ProjectId: '{ProjectId}' - Name: '{Name}' - Description: '{Description}'", nameof(Quotation), op.ProjectId, op.Name, op.Description);
-                    await _db.Quotations.AddAsync(op, cancellationToken);
-                }
-            }
-
-            await _db.SaveChangesAsync(cancellationToken);
-            _logger.LogInformation("Seeded {Quotations} Complete.", nameof(_db.Quotations));
-        }
-
-        var quotation1 = _db.Quotations.Where(p => p.Name.Contains("Quotation1")).FirstOrDefault();
-        var quotation2 = _db.Quotations.Where(p => p.Name.Contains("Quotation2")).FirstOrDefault();
+        var project1 = _db.Projects.Where(p => p.Name.Contains("P1")).FirstOrDefault();
+        var project2 = _db.Projects.Where(p => p.Name.Contains("P2")).FirstOrDefault();
 
         //////////////////////////////
         // Seed Deliveries
@@ -285,8 +250,9 @@ public class StoreSeeder : ICustomSeeder
 
             var deliveries = new List<Delivery>
             {
-                new Delivery("Delivery1", "Descripción Delivery 1", false, false, project1!.Id),
-                new Delivery("Delivery2", "Descripción Delivery 2", false, false, project2!.Id),
+                new Delivery("D1 - Cement and Wood", "First Materials to start the work", false, false, project1!.Id),
+                new Delivery("D2 - Transmitters", "Transmitters and complements", false, false, project2!.Id),
+                new Delivery("D3 - Electric installation", "Complete the offices", false, false, project1!.Id),
             };
 
             // Here you can use your own logic to populate the database.
@@ -304,52 +270,9 @@ public class StoreSeeder : ICustomSeeder
             _logger.LogInformation("Seeded {Deliveries} Complete.", nameof(_db.Deliveries));
         }
 
-        var delivery1 = _db.Deliveries.Where(p => p.Name.Contains("Delivery1")).FirstOrDefault();
-        var delivery2 = _db.Deliveries.Where(p => p.Name.Contains("Delivery2")).FirstOrDefault();
-
-        //////////////////////////////
-        // Seed QUOTATIONPRODUCTS
-        //////////////////////////////
-
-        if (!_db.QuotationProducts.Any())
-        {
-            _logger.LogInformation("Started to Seed {QuotationProducts}.", nameof(_db.QuotationProducts));
-
-            var quotationProducts = new List<QuotationProduct>
-            {
-                // Quotation 1 - Product CASONETO
-                new QuotationProduct(quotation1!.Id, casonetoProduct!.Id, 2),
-
-                // Quotation 1 - Product BROCA HILTI
-                new QuotationProduct(quotation1!.Id, brocaProduct!.Id, 4),
-
-                // Quotation 1 - Product FOSEADO
-                new QuotationProduct(quotation1!.Id, foseadoProduct!.Id, 41),
-
-                // Quotation 1- Product CANAL
-                new QuotationProduct(quotation1!.Id, canalProduct!.Id, 19),
-
-                // Quotation 2 - Product CINTA
-                new QuotationProduct(quotation2!.Id, cintaProduct!.Id, 111),
-
-                // Quotation 2 - Product SILICATO
-                new QuotationProduct(quotation2!.Id, silicatoProduct!.Id, 29)
-            };
-
-            // Here you can use your own logic to populate the database.
-
-            if (quotationProducts != null)
-            {
-                foreach (var op in quotationProducts)
-                {
-                    _logger.LogInformation("Seeding {QuotationProduct} => QuotationId: '{QuotationId}' - ProductId: '{ProductId}' - Quantity: '{Quantity}'", nameof(QuotationProduct), op.QuotationId, op.ProductId, op.Quantity);
-                    await _db.QuotationProducts.AddAsync(op, cancellationToken);
-                }
-            }
-
-            await _db.SaveChangesAsync(cancellationToken);
-            _logger.LogInformation("Seeded {QuotationProducts} Complete.", nameof(_db.QuotationProducts));
-        }
+        var delivery1 = _db.Deliveries.Where(p => p.Name.Contains("D1")).FirstOrDefault();
+        var delivery2 = _db.Deliveries.Where(p => p.Name.Contains("D2")).FirstOrDefault();
+        var delivery3 = _db.Deliveries.Where(p => p.Name.Contains("D3")).FirstOrDefault();
 
         //////////////////////////////
         // Seed DELIVERYPRODUCTS
@@ -361,23 +284,17 @@ public class StoreSeeder : ICustomSeeder
 
             var deliveryProducts = new List<DeliveryProduct>
             {
-                // Delivery 1 - Product CASONETO
-                new DeliveryProduct(delivery1!.Id, casonetoProduct!.Id, 2),
+                new DeliveryProduct(delivery1!.Id, product2!.Id, 4),
+                new DeliveryProduct(delivery1!.Id, product3!.Id, 1),
+                new DeliveryProduct(delivery1!.Id, product4!.Id, 10),
 
-                // Delivery 2 - Product BROCA HILTI
-                new DeliveryProduct(delivery2!.Id, brocaProduct!.Id, 4),
+                new DeliveryProduct(delivery2!.Id, product5!.Id, 32),
+                new DeliveryProduct(delivery2!.Id, product6!.Id, 2),
 
-                // Delivery 2 - Product FOSEADO
-                new DeliveryProduct(delivery2!.Id, foseadoProduct!.Id, 41),
+                new DeliveryProduct(delivery3!.Id, product1!.Id, 1),
+                new DeliveryProduct(delivery3!.Id, product5!.Id, 18),
+                new DeliveryProduct(delivery3!.Id, product6!.Id, 5),
 
-                // Delivery 2- Product CANAL
-                new DeliveryProduct(delivery2!.Id, canalProduct!.Id, 19),
-
-                // Delivery 2 - Product CINTA
-                new DeliveryProduct(delivery2!.Id, cintaProduct!.Id, 111),
-
-                // Delivery 2 - Product SILICATO
-                new DeliveryProduct(delivery2!.Id, silicatoProduct!.Id, 29)
             };
 
             // Here you can use your own logic to populate the database.

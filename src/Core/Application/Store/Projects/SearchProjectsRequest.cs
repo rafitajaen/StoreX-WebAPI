@@ -5,23 +5,6 @@ public class SearchProjectsRequest : PaginationFilter, IRequest<PaginationRespon
     public Guid? CustomerId { get; set; }
 }
 
-public class ProjectsBySearchRequestSpec : EntitiesByPaginationFilterSpec<Project, ProjectDto>
-{
-    public ProjectsBySearchRequestSpec(SearchProjectsRequest request)
-        : base(request) =>
-        Query.OrderBy(c => c.Name, !request.HasOrderBy());
-}
-
-public class ProjectsBySearchRequestWithCustomersSpec : EntitiesByPaginationFilterSpec<Project, ProjectDto>
-{
-    public ProjectsBySearchRequestWithCustomersSpec(SearchProjectsRequest request)
-        : base(request) =>
-        Query
-            .Include(p => p.Customer)
-            .OrderBy(c => c.Name, !request.HasOrderBy())
-            .Where(p => p.CustomerId.Equals(request.CustomerId!.Value), request.CustomerId.HasValue);
-}
-
 public class SearchProjectsRequestHandler : IRequestHandler<SearchProjectsRequest, PaginationResponse<ProjectDto>>
 {
     private readonly IReadRepository<Project> _repository;
