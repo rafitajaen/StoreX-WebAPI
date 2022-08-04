@@ -1,6 +1,13 @@
 # StoreX WebAPI Changelog
 
-## v0.0.11 - [Clean code and make it ready for prod]()
+## v0.0.12 - [README links bugfixes]()
+
+**branch :** _storex_
+
+    Edit:
+        - README : Bugfix some links and diagram size
+
+## v0.0.11 - [Clean code and make it ready for prod](https://github.com/rafitajaen/StoreX-WebAPI/tree/e11fe4745f742077818e0a97284f39e4d9e682f2)
 
 **branch :** _storex_
 
